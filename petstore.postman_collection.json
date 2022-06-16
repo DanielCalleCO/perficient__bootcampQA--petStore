@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "d876091e-5d9b-4065-917c-471535f42fbc",
+		"name": "Petstore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21288075"
+	},
+	"item": [
+		{
+			"name": "Create PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200\", ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const petId = Object.keys(response).includes(\"id\");\r",
+							"\r",
+							"pm.test(\"Pet ID\", ()=>{\r",
+							"    pm.expect(true).to.be.eql(petId);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "accessToken",
+							"value": "bdd2c3f6-0ab2-4aff-8ad0-59780649c5c5",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "write:pets",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://petstore.swagger.io/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://petstore.swagger.io/oauth/authorize",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 8941426,\r\n    \"category\": {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    },\r\n    \"name\": \"Zoe\",\r\n    \"photoUrls\": [\r\n      \"https://hipertextual.com/wp-content/uploads/2021/04/siames-scaled.jpg\"\r\n    ],\r\n    \"tags\": [\r\n      {\r\n        \"id\": 0,\r\n        \"name\": \"cat\"\r\n      }\r\n    ],\r\n    \"status\": \"available\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{petsURL}}/pet",
+					"host": [
+						"{{petsURL}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200\", ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json().id;\r",
+							"const req = pm.request.url.path[2];\r",
+							"\r",
+							"pm.test (\"ID sent is equal to ID received\",()=>{\r",
+							"if (response == req){\r",
+							"    return true\r",
+							"}\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "api_key",
+						"value": "{{api_key}}",
+						"description": "apiKey",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "access_token",
+						"value": "f285379f-b64a-4c87-9868-47b73e97b0e0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{petsURL}}/pet/8941426",
+					"host": [
+						"{{petsURL}}"
+					],
+					"path": [
+						"pet",
+						"8941426"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place ORDER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200\", ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const petId = Object.keys(response).includes(\"id\");\r",
+							"\r",
+							"pm.test(\"Pet ID\", ()=>{\r",
+							"    pm.expect(true).to.be.eql(petId);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "accessToken",
+							"value": "bdd2c3f6-0ab2-4aff-8ad0-59780649c5c5",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "test",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "write:pets",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://petstore.swagger.io/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://petstore.swagger.io/oauth/authorize",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"petId\": 8941426,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2022-06-13T14:27:05.268Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{petsURL}}/store/order",
+					"host": [
+						"{{petsURL}}"
+					],
+					"path": [
+						"store",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200\", ()=>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json().id;\r",
+							"const req = pm.request.url.path[2];\r",
+							"\r",
+							"pm.test (\"ID sent is equal to ID received\",()=>{\r",
+							"if (response == req){\r",
+							"    return true\r",
+							"}\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "api_key",
+						"value": "{{api_key}}",
+						"description": "apiKey",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "access_token",
+						"value": "f285379f-b64a-4c87-9868-47b73e97b0e0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{petsURL}}/store/order/1234567890123456816",
+					"host": [
+						"{{petsURL}}"
+					],
+					"path": [
+						"store",
+						"order",
+						"1234567890123456816"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "test",
+			"value": "test"
+		}
+	]
+}
